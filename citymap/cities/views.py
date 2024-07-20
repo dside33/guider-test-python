@@ -18,7 +18,7 @@ class CityViewSet(ModelViewSet):
     def list(self, request):
         cities = City.objects.all()
         serializer = CitySerializer(cities, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class StreetViewSet(ModelViewSet):
@@ -32,7 +32,7 @@ class StreetViewSet(ModelViewSet):
             streets = Street.objects.all()
         
         serializer = StreetSerializer(streets, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ShopViewSet(ModelViewSet):
