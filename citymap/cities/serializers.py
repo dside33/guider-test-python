@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, CharField
 
 from .models import City, Street, Shop
 
@@ -14,6 +14,9 @@ class StreetSerializer(ModelSerializer):
         fields = '__all__'
 
 class ShopSerializer(ModelSerializer):
+    city = CharField(source='city.name', read_only=True)
+    street = CharField(source='street.name', read_only=True)
+
     class Meta:
         model = Shop
-        fields = '__all__'
+        fields = ['id', 'house_number', 'name', 'open_time', 'close_time', 'city', 'street']
