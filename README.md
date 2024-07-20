@@ -1,8 +1,80 @@
-# guider-test-python
+# Тестовое задание Python
+
+**Фамилия Имя:** Товарнов Александр
+
+## Описание проекта
+
+Проект представляет собой сервис для обработки HTTP-запросов с использованием Django и DRF. Сервис позволяет выполнять следующие операции:
+
+- Получение списка всех городов.
+- Получение списка всех улиц указанного города.
+- Создание нового магазина.
+- Получение списка магазинов с возможностью фильтрации по параметрам.
+
+Сервис использует реляционную базу данных PostgreSQL для хранения данных.
+
+## Инструкции по установке и настройке
+
+### Установка зависимостей
+
+1. Клонируйте репозиторий:
+    ```bash
+    git clone https://github.com/dside33/guider-test-python.git
+    ```
+
+2. Перейдите в директорию проекта:
+    ```bash
+    cd guider-test-python
+    ```
+
+3. Создайте и активируйте виртуальное окружение:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # Для Windows используйте `venv\Scripts\activate`
+    ```
+
+4. Установите необходимые пакеты:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Настройка базы данных
+
+1. Убедитесь, что PostgreSQL установлен и работает.
+2. Создайте пользователя и базу данных в PostgreSQL:
+    ```sql
+    CREATE USER cities_user WITH PASSWORD 'password';
+    CREATE DATABASE cities_db WITH OWNER cities_user;
+    ```
+
+3. В случае если пользователь и БД другие, обновите настройки базы данных в `settings.py`
+
+## Запуск проекта
+
+1. Примените миграции базы данных:
+    ```bash
+    python manage.py migrate
+    ```
+
+2. Создайте суперпользователя:
+    ```bash
+    python manage.py createsuperuser
+    ```
+
+3. Запустите сервер Django:
+    ```bash
+    python manage.py runserver
+    ```
+
+4. Откройте браузер и перейдите по адресу `http://127.0.0.1:8000/`.
+
+## Использование API-эндпоинтов
+
+(Лучше использовать Postman для проверки)
+
+- **GET /city/** — получение списка всех городов.
+- **GET /city/{city_id}/street/** — получение списка всех улиц указанного города.
+- **POST /shop/** — создание нового магазина. В запросе должен содержаться JSON объект с данными магазина.
+- **GET /shop/?street=&city=&open=0/1** — получение списка магазинов с фильтрацией по улице, городу и статусу открытия.
 
 
-CREATE USER cities_user WITH PASSWORD 'password';
-
-CREATE DATABASE cities_db WITH OWNER cities_user;
-
-python manage.py migrate
